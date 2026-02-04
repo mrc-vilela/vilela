@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordem Vilela — Início</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/icon.png" type="image/png">
+</head>
+<body data-theme="light">
+    <header class="site-header">
+        <div class="container header-row">
+            <div class="brand">
+                <img class="brand-logo" src="img/icon.png" alt="Ordem Vilela">
+                <div>
+                    <p class="brand-title">Ordem Vilela</p>
+                    <p class="brand-subtitle">Blog Institucional</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a class="nav-link is-active" href="index.html">Início</a>
+                <a class="nav-link" href="postagens.html">Postagens</a>
+                <a class="nav-link" href="contato.html">Contato</a>
+                <button class="nav-link theme-toggle" type="button">Escuro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">Informação com responsabilidade</p>
+                    <h1 class="hero-title">Reflexões, análises e diálogo para fortalecer o Vale do Paraíba, o Brasil e o mundo.</h1>
+                    <p class="hero-text">
+                        Meu nome é Marcus Vilela. Sou observador atento da política e da sociedade brasileira, buscando compreender
+                        os movimentos sociais, econômicos e institucionais que moldam o nosso país. Acredito no debate responsável
+                        e na importância da informação clara e acessível.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button" href="postagens.html">Ver postagens</a>
+                        <a class="button ghost" href="contato.html">Falar comigo</a>
+                    </div>
+                </div>
+                <div class="hero-card card">
+                    <p class="card-label">Em destaque</p>
+                    <h2 class="card-title">Compromisso com seriedade e respeito</h2>
+                    <p class="card-text">
+                        Este blog é um espaço institucional de reflexão: análise de contexto, leitura crítica e construção de pontes.
+                        O objetivo é contribuir para um debate qualificado, com linguagem clara e base em fatos.
+                    </p>
+                    <div class="pill-row">
+                        <span class="pill">Política pública</span>
+                        <span class="pill">Sociedade</span>
+                        <span class="pill">Instituições</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Últimas postagens</h2>
+                        <p class="muted">Atualizações recentes e leituras recomendadas.</p>
+                    </div>
+                    <a class="text-link" href="postagens.html">Ver todas</a>
+                </div>
+                <div class="grid">
+                    <article class="card post-card">
+                        <p class="card-label">12/07/2025</p>
+                        <h3 class="card-title">Indicação de leitura</h3>
+                        <p class="card-text">Criatividade na Gestão de Empresas, de José Carlos Mádio, é uma leitura que amplia a visão sobre liderança e planejamento estratégico...</p>
+                        <a class="text-link" href="postagens.html">Leia mais</a>
+                    </article>
+                    <article class="card post-card">
+                        <p class="card-label">12/07/2025</p>
+                        <h3 class="card-title">Campanha do PT tem referência ao CV</h3>
+                        <p class="card-text">Política séria não normaliza o crime...</p>
+                        <a class="text-link" href="postagens.html">Leia mais</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container split">
+                <div>
+                    <h2>Linhas editoriais</h2>
+                    <p class="muted">Temas que orientam a produção de conteúdo.</p>
+                </div>
+                <div class="grid three">
+                    <div class="card">
+                        <h3 class="card-title">Gestão pública</h3>
+                        <p class="card-text">Experiências, boas práticas e inovação na administração pública.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Sociedade civil</h3>
+                        <p class="card-text">O papel das comunidades na construção de soluções sustentáveis.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Economia real</h3>
+                        <p class="card-text">Análises sobre desenvolvimento regional e impacto social.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <p>© 2025 Marcus Vilela. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        const updateThemeLabel = () => {
+            const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            if (themeToggle) {
+                themeToggle.textContent = current === 'dark' ? 'Claro' : 'Escuro';
+            }
+        };
+
+        updateThemeLabel();
+
+        themeToggle?.addEventListener('click', () => {
+            const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeLabel();
+        });
+    </script>
+</body>
+</html>

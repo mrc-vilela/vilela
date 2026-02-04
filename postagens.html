@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordem Vilela — Postagens</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/icon.png" type="image/png">
+</head>
+<body data-theme="light">
+    <header class="site-header">
+        <div class="container header-row">
+            <div class="brand">
+                <img class="brand-logo" src="img/icon.png" alt="Ordem Vilela">
+                <div>
+                    <p class="brand-title">Ordem Vilela</p>
+                    <p class="brand-subtitle">Blog Institucional</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a class="nav-link" href="index.html">Início</a>
+                <a class="nav-link is-active" href="postagens.html">Postagens</a>
+                <a class="nav-link" href="contato.html">Contato</a>
+                <button class="nav-link theme-toggle" type="button">Escuro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h1>Postagens</h1>
+                        <p class="muted">Leituras, comentários e análises para um debate público responsável.</p>
+                    </div>
+                    <span class="pill">Arquivo 2025</span>
+                </div>
+                <div class="post-list">
+                    <article class="card post-card post-article">
+                        <p class="card-label">12/07/2025</p>
+                        <h2 class="card-title">Indicação de leitura</h2>
+                        <p class="card-text">Criatividade na Gestão de Empresas, de José Carlos Mádio, é uma leitura que amplia a visão sobre liderança e planejamento estratégico.</p>
+                        <p class="card-text">A obra convida o leitor a enxergar a gestão pública com mais inventividade, valorizando processos, pessoas e soluções sustentáveis que fortalecem as instituições.</p>
+                        <p class="card-text">Minha recomendação é que o livro seja visto como um guia de reflexão para decisões mais conscientes e alinhadas ao interesse coletivo.</p>
+                        <div class="post-actions">
+                            <button class="action-btn share-btn" type="button">⤴ Compartilhar</button>
+                        </div>
+                    </article>
+                    <article class="card post-card post-article">
+                        <p class="card-label">12/07/2025</p>
+                        <h2 class="card-title">Campanha do PT tem referência ao CV</h2>
+                        <p class="card-text">Política séria não normaliza o crime. Precisamos de limites claros e responsabilidade institucional.</p>
+                        <p class="card-text">A linguagem pública deve respeitar valores democráticos e reforçar a legalidade, porque o impacto das palavras atravessa a sociedade e influencia comportamentos.</p>
+                        <p class="card-text">O debate deve ser firme, transparente e comprometido com a segurança e a dignidade das pessoas.</p>
+                        <div class="post-actions">
+                            <button class="action-btn share-btn" type="button">⤴ Compartilhar</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <p>© 2025 Marcus Vilela. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        const shareButtons = document.querySelectorAll('.share-btn');
+        shareButtons.forEach((button) => {
+            button.addEventListener('click', async () => {
+                const article = button.closest('article');
+                const title = article?.querySelector('h2')?.textContent?.trim() || 'Postagem';
+                const url = window.location.href;
+                if (navigator.share) {
+                    try {
+                        await navigator.share({ title, text: title, url });
+                    } catch (err) {
+                        // user canceled share
+                    }
+                } else {
+                    try {
+                        await navigator.clipboard.writeText(`${title} - ${url}`);
+                        button.textContent = 'Link copiado';
+                        setTimeout(() => {
+                        button.textContent = '⤴ Compartilhar';
+                        }, 2000);
+                    } catch (err) {
+                        alert('Não foi possível copiar o link.');
+                    }
+                }
+            });
+        });
+
+        const themeToggle = document.querySelector('.theme-toggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        const updateThemeLabel = () => {
+            const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            if (themeToggle) {
+                themeToggle.textContent = current === 'dark' ? 'Claro' : 'Escuro';
+            }
+        };
+
+        updateThemeLabel();
+
+        themeToggle?.addEventListener('click', () => {
+            const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeLabel();
+        });
+    </script>
+</body>
+</html>
